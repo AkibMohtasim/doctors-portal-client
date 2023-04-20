@@ -4,8 +4,10 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Appointment from "../../Pages/Appointment/Appointment/Appointment";
 import SignUp from "../../Pages/SignUp/SignUp";
-import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
+// import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import DashboardLayout from "../../Layout/DashboardLayout";
+import MyAppointment from "../../Pages/Dashboard/MyAppointment/MyAppointment";
 
 const router = createBrowserRouter([
   {
@@ -27,12 +29,18 @@ const router = createBrowserRouter([
       {
         path: '/appointment',
         element: <Appointment />
-      },
+      }
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <PrivateRoute>
+      <DashboardLayout />
+    </PrivateRoute>,
+    children: [
       {
         path: '/dashboard',
-        element: <PrivateRoute>
-          <Dashboard />
-        </PrivateRoute>
+        element: <MyAppointment />
       }
     ]
   }

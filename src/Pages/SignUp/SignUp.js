@@ -32,7 +32,7 @@ const SignUp = () => {
         }
         updateUser(userInfo)
           .then(() => {
-            navigate('/');
+            saveUser(data.name, data.email);
           })
           .catch(err => console.error(err.message));
       })
@@ -41,6 +41,33 @@ const SignUp = () => {
         setSignUpError(err.message);
 
       });
+  }
+
+  const saveUser = (name, email) => {
+    const user = { name, email };
+
+    fetch('http://localhost:5000/api/users', {
+      method: 'post',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+      .then(res => res.json())
+      .then(data => {
+        getUserToken(email);
+      })
+  }
+
+  const getUserToken = email => {
+    fetch(`http://localhost:5000/api/jwt?email=${email}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.accessToken) {
+          localStorage.setItem('accessToken', data.accessToken);
+          navigate('/');
+        }
+      })
   }
 
 
