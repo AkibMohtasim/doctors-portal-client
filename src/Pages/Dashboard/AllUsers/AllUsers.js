@@ -7,14 +7,14 @@ const AllUsers = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/api/users');
+      const res = await fetch('https://doctors-portal-server-eosin-xi.vercel.app/api/users');
       const data = await res.json();
       return data;
     }
   });
 
   const makeAdminHandler = id => {
-    fetch(`http://localhost:5000/api/users/admin/${id}`, {
+    fetch(`https://doctors-portal-server-eosin-xi.vercel.app/api/users/admin/${id}`, {
       method: 'put',
       headers: {
         authorization: `bearer ${localStorage.getItem('accessToken')}`

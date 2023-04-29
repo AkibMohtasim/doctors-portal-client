@@ -70,10 +70,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/dashboard/payment/:id',
-        element: <AdminRoute>
-          <Payment />
-        </AdminRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/api/bookings/${params.id}`)
+        element: <Payment />,
+        loader: ({ params }) => fetch(`https://doctors-portal-server-eosin-xi.vercel.app/api/bookings/${params.id}`)
       },
     ]
   }

@@ -54,7 +54,7 @@ const SignUp = () => {
   const saveUser = (name, email) => {
     const user = { name, email };
 
-    fetch('http://localhost:5000/api/users', {
+    fetch('https://doctors-portal-server-eosin-xi.vercel.app/api/users', {
       method: 'post',
       headers: {
         'content-type': 'application/json'
@@ -68,7 +68,7 @@ const SignUp = () => {
   }
 
   // const getUserToken = email => {
-  //   fetch(`http://localhost:5000/api/jwt?email=${email}`)
+  //   fetch(`https://doctors-portal-server-eosin-xi.vercel.app/api/jwt?email=${email}`)
   //     .then(res => res.json())
   //     .then(data => {
   //       if (data.accessToken) {
